@@ -15,14 +15,14 @@ function Timer(){
         numArray.push(i)
     }
 
-    const nums = numArray.map((num) => <option key={num} value={num}>{num}</option>)
+    const nums = numArray.map((num) => <option key={num} value={String(num)}>{num}</option>)
 
     const handleMinuteOption = (e) => {
-        setMinute(e.target.value)
+        setMinute(parseInt(e.target.value))
         setMinValue(e.target.value)
     }
     const handleSecondOption = (e) => {
-        setSecond(e.target.value)
+        setSecond(parseInt(e.target.value))
         setSecValue(e.target.value)
     }
 
@@ -62,7 +62,6 @@ function Timer(){
             clearInterval(ID.current)
             setIsDisabled(false)
             setHasStarted(false)
-            console.log("working")
             alert("Time UP")
         }
 
@@ -86,6 +85,8 @@ function Timer(){
         setIsDisabled2(true)
         setHasStarted(false)
         setUserOption("Stop")
+        setMinValue("Minutes")
+        setSecValue("Seconds")
     }
 
     function format(num){
@@ -102,12 +103,12 @@ function Timer(){
                 <h1>Count-Down Timer</h1>
                 <div>
                     <select className="option" id="" value={minValue} onChange = {(e) => handleMinuteOption(e)} disabled = {isDisabled}>
-                        <option value="minutes"disabled>Minutes</option>
+                        <option value="minutes">Minutes</option>
                         {nums}
                     </select>
 
                     <select className="option" id="" value={secValue} onChange = {(e) => handleSecondOption(e)} disabled = {isDisabled}>
-                        <option value="seconds" disabled>Seconds</option>
+                        <option value="seconds">Seconds</option>
                         {nums}
                     </select>
                 </div>
