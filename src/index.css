@@ -1,0 +1,79 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+section{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    padding: 10px;
+}
+
+.parent{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 10px;
+    box-shadow: 1px 1px 10px rgb(49, 66, 10);
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.parent h1{
+    font-size: 28px;
+}
+
+.parent div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.parent div .option{
+    padding: 5px 15px;
+    background-color: transparent;
+    color: orange;
+    border: 2px solid orange;
+    font-weight: bold;
+    border-radius: 5px;
+    outline: none;
+}
+
+.parent p{
+    font-size: 90px;
+    text-shadow: 5px 2px rgb(176, 167, 156);
+}
+
+.parent .child{
+    width: 100%;
+    gap: 0;
+    justify-content: space-evenly;
+}
+
+.parent .child button{
+    padding: 7px 20px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+}
+
+.parent .child button:nth-child(1){
+    background-color: green;
+}
+.parent .child button:nth-child(2){
+    background-color: red;
+}
+.parent .child button:nth-child(3){
+    background-color: orange;
+}
