@@ -37,12 +37,10 @@ function Timer(){
     }
     
     const handleStart = () => {
-        if (second > 0){
-            run()
-        }else if(minute > 0){
+        if (second > 0 || minute > 0){
             run()
         }else{
-            alert("You inputed nonsense")
+            alert("Invalid timer selected")
         }
     }
     
@@ -55,13 +53,16 @@ function Timer(){
     } 
 
     useEffect(() => {
-        if(second < 0 && minute > 0){
+        if(minute > 0 && second < 0 ){
             setMinute(m => m - 1)
             setSecond(59)
-        }else if(second === 0 && minute === 0 && hasStarted ){
+        }
+        
+        if(second === 0 && minute === 0 && hasStarted){
             clearInterval(ID.current)
             setIsDisabled(false)
             setHasStarted(false)
+            console.log("working")
             alert("Time UP")
         }
 
@@ -79,8 +80,8 @@ function Timer(){
     
     const resetTimer = () => {
         clearInterval(ID.current)
-        setSecond("0")
-        setMinute("0")
+        setSecond(0)
+        setMinute(0)
         setIsDisabled(false)
         setIsDisabled2(true)
         setHasStarted(false)
