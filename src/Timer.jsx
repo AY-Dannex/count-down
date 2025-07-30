@@ -1,13 +1,14 @@
 import React, {useState, useRef, useEffect} from 'react'
 
 function Timer(){
-    const [second, setSecond] = useState("0")
+    const [second, setSecond] = useState(0)
     const [minute, setMinute] = useState(0)
     const [userOption, setUserOption] = useState("Stop")
     const [secValue, setSecValue] = useState("seconds")
     const [minValue, setMinValue] = useState("minutes")
     const [isDisabled, setIsDisabled] = useState(false)
     const [isDisabled2, setIsDisabled2] = useState(true)
+    const [hasStarted, setHasStarted] = useState(false)
     const numArray= []
 
     for(let i = 0; i < 60; i++){
@@ -29,6 +30,7 @@ function Timer(){
         startCountDown()
         setIsDisabled(true)
         setIsDisabled2(false)
+        setHasStarted(true)
 
         setMinValue("Minutes")
         setSecValue("Seconds")
@@ -52,24 +54,18 @@ function Timer(){
         }, 1000)
     } 
 
-    const alarmRef = useRef(null)
-    useEffect(() =>{
-        alarmRef.current = new Audio("/alarm.mp3")
-        alarmRef.current.loop = true
-    }, [])
-
     useEffect(() => {
         if(second < 0 && minute > 0){
             setMinute(m => m - 1)
             setSecond(59)
-        }else if(second === 0 && minute === 0){
+        }else if(second === 0 && minute === 0 && hasStarted ){
             clearInterval(ID.current)
             setIsDisabled(false)
-            alarmRef.current.play().catch(e => console.log("Audio error: ", e))
+            setHasStarted(false)
             alert("Time UP")
         }
 
-    }, [second])
+    }, [second, minute])
 
     const stopCountDown = () => {
         if(userOption === "Stop"){
@@ -87,6 +83,7 @@ function Timer(){
         setMinute("0")
         setIsDisabled(false)
         setIsDisabled2(true)
+        setHasStarted(false)
         setUserOption("Stop")
     }
 
